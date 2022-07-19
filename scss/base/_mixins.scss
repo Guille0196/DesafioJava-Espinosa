@@ -1,0 +1,7 @@
+@mixin bordes($valor) {
+    border: $valor;
+}
+
+.product-item {
+    @include bordes(3px solid black)
+}

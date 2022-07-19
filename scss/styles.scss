@@ -1,0 +1,259 @@
+@import "base/extends";
+@import "base/mixins";
+
+
+// variables
+$color-principal: black;
+$color-secundario: white;
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: darkslategray;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    width: 100%;
+}
+
+p {
+    color: $color-secundario;
+}
+
+header {
+    background-color: $color-principal;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    position: sticky;
+    top: 0;
+    font-family: 'Russo One', sans-serif;
+    z-index: 3;
+    .menu-icon {
+        img {
+        width: 30px;
+        height: 30px;
+        border-radius: 2px solid $color-secundario;
+        }
+    }
+    .logo-header img {
+        width: 50px;
+    }
+    nav ul li a{
+        margin: 5px;
+    }
+}
+
+.menu{
+    ul{
+        display: flex;
+        align-items: center;
+    }
+    li{
+        margin-right: 1.5rem;
+    }
+    li a:hover{
+        background-color: blue;
+        border-radius: 6px;
+        transition: all 0.5s;
+    }
+    a:hover{
+        color: $color-principal
+    }
+    ul li .boton{
+        color: $color-secundario;
+        text-decoration: none;
+        padding: 20px;
+    }
+}
+
+.menu-icon, #check {
+    display: none;
+}
+
+@media (max-width:768px){
+    .checkbtn{
+        display: block;
+    }
+    .menu-icon{
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+    }
+    .menu ul {
+        display: block;
+        position: fixed;
+        top: 70px;
+        left:-100%;
+        background: #222;
+        width: 100%;
+        height: 100vh;
+        right: 0;
+    }
+    .menu ul li{
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+    .menu li:hover{
+        background-color: transparent;
+    }
+    #check:checked ~ ul{
+        left: 0;
+        transition: all .25s;
+    }
+
+    .contactos {
+        width: 30em;
+    }
+
+    .sucursales {
+        width: 29em;
+    }
+
+    .capa {
+        margin-top: 20px;
+    }
+    
+}
+
+.contenido-inicio {
+    margin: 20px;
+}
+
+.footer {
+    background-color: $color-principal;
+    margin-top: auto;
+    color: $color-secundario;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    .facebook {
+        @extend %redes;
+    }
+    
+    .instagram {
+        @extend %redes;
+    }
+}
+
+.servicios {
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+
+.item-destacados {
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 6px;
+}
+
+
+.capa {
+    width: 406px;
+    height: 206px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.capa:before,
+.capa:after {
+    content: '';
+    width: 406px;
+    height: 206px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    transition: all 0.5s;
+}
+
+.capa:hover:before {
+    display: none;
+}
+
+.capa:hover:after {
+    background: black;
+    border-radius: 6px;
+}
+
+
+.capa h3 {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    transform: scale(0);
+    transition: all 0.5s;
+    z-index: 1;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.capa:hover h3 {
+    transform: scale(1);
+}
+
+.capa p {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    margin-right: 15px;
+    transform: scale(0);
+    transition: all 0.5s;
+    z-index: 1;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.capa:hover p{
+    transform: scale(1);
+}
+
+.destacados img{
+    width: 400px;
+    height: 200px;
+}
+
+.about {
+    padding: 20px;
+}
+
+.product-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 20px;
+    .product-item {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.sucursales {
+    max-width: 45em;
+}
+
+.contactos {
+    max-width: 55em;
+    margin-top: 10px;
+}

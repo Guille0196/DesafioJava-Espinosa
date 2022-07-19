@@ -1,0 +1,3 @@
+Se agrego keywords a todas las paginas
+Se agrego title a productos, sucursales, nosotros y al formulario de contacto
+Se agrego descriptions en todas las paginas

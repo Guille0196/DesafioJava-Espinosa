@@ -1,58 +1,62 @@
-let nombreServicio1 = "Amortiguadores"
-let precioServicio1 = 7000
-let stockServicio1 = 10
+function producto(nombre, precio, stock){
+    this.nombre = nombre;
+    this.precio = precio;
+    this.stock = stock;
+  }
 
-let nombreServicio2 = "Cubiertas"
-let precioServicio2 = 15000
-let stockServicio2 = 10
+  const producto1 = new producto('Amortiguadores', 7000, 20)
+  const producto2 = new producto('Cubiertas', 15000, 15)
+  
 
-
-let cantidadCompras = prompt("Ingrese la cantidad de servicios distintos que desea comprar:\n- Amortiguadores\n- Cubiertas");
+let listaProductos = [producto1, producto2]
+let nombresProductos = listaProductos.map((producto) => producto.nombre)
+let cantidadCompras = prompt("Ingrese la cantidad de productos diferentes que desea comprar:\n " + nombresProductos.join("\n "))
 let precioTotal = 0;
 
 function calculoPrecio(cantidad, precio){
     precioTotal += cantidad * precio
 }
 
-function calculoStock(cantidad, stock, precio){
-    if(stock >= cantidad){
-        calculoPrecio(cantidad, precio)
-        alert("El precio total es de: $" + (cantidad * precio))
+function calculoStock(cantidad, producto){
+    if(producto.stock >= cantidad){
+        calculoPrecio(cantidad, producto.precio)
+        alert("El precio total es de: $" + (cantidad * producto.precio))
     }
     else{
-        alert("No es posible brindarle tantos servicio, selecione una cantidad menor")
+        alert("No es posible brindarle tantos productos, selecione una cantidad menor")
     }
 }
+
 
 function sumaIva(precio){
     return precio * 1.21
 }
 for(let i = 0; i < cantidadCompras; i++){
 
-    let compra1 = prompt("Ingrese el nombre del servicio que desea comprar: \n- Amortiguadores\n- Cubiertas");
-    let cantidad1 = prompt("ingrese la cantidad del producto que quiere comprar:");
+    let compra1 = prompt("Ingrese el nombre del producto que desea comprar: \n " + nombresProductos.join("\n ")).toLowerCase()
+    let cantidad1 = prompt("Ingrese la cantidad de productos que desea comprar:");
 
-    if(compra1 == "Amortiguadores"){
-        calculoStock(cantidad1, stockServicio1, precioServicio1)
+    if(compra1 == producto1.nombre.toLowerCase()){
+        calculoStock(cantidad1, producto1)
     }
-    else if(compra1 == "Cubiertas"){
-        calculoStock(cantidad1, stockServicio2, precioServicio2)
+    else if(compra1 == producto2.nombre.toLowerCase()){
+        calculoStock(cantidad1, producto2)
     }
     else{
-        alert("No tenemos ese servicio")
+        alert("No tenemos ese producto")
     }
 }
 
 switch(true){
-    case precioTotal < 3000 || precioTotal > 1000:
+    case precioTotal < 3000 && precioTotal > 1000:
         precioTotal = precioTotal * 0.95
         alert("Recibiste un descuento del 5% por tu compra")
         break;
-    case precioTotal > 3000:
+    case precioTotal >= 3000 && precioTotal <6000:
         precioTotal = precioTotal * 0.90
         alert("Recibiste un descuento del 10% por tu compra")
         break;
-    case precioTotal > 6000:
+    case precioTotal >= 6000:
         alert("Recibiste un descuento del 30% por tu compra")
         precioTotal = precioTotal * 0.70
         break;

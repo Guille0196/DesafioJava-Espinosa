@@ -71,3 +71,9 @@ switch(true){
 let precioToTalConImpuestos = sumaIva(precioTotal)
 
 alert("Precio final con impuestos: $" + precioToTalConImpuestos)
+
+const boton = document.getElementById('boton1')
+
+boton.addEventListener('click', () => {
+    console.log('Agrego una nueva unidad de "Nombre de producto"')
+})

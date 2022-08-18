@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const DOMcarrito = document.querySelector('#carrito');
     const DOMtotal = document.querySelector('#total');
     const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+    const DOMbotonComprar = document.querySelector('#boton-comprar');
     const listaDeProductos = [
         {
             id: 1,
@@ -168,4 +169,45 @@ document.addEventListener('DOMContentLoaded', () => {
     cargarCarritoDeLocalStorage();
     renderizarProductos();
     renderizarCarrito();
+
+    DOMbotonComprar.addEventListener('click', vaciarCarrito);
+    cargarCarritoDeLocalStorage();
+    renderizarProductos();
+    renderizarCarrito();
+
+    DOMbotonComprar.addEventListener('click', ()=>
+    Swal.fire({
+        title:"Muchas Gracias",
+        text:"¿Desea finalizar su compra?",
+        showCancelButton: true,
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+    }).then((resultado)=> {
+        if(resultado.isConfirmed) {
+        Swal.fire({
+            title:"Felicidades",
+            text:"En breve recibiras un mail con la confirmación de tu pedido",
+            confirmButtontext: "OK",
+            icon:"success",
+        })
+        } 
+    })
+    );
+
+
+
+    const miNodoBoton =document.getElementsByClassName("btn-primary")
+    for (const elemento of miNodoBoton) {
+        elemento.addEventListener('click', ()=>
+        Toastify({
+            text:"Agregaste un producto",
+            duration:1000,
+            gravity:'bottom',
+            position:"right",
+        }).showToast(),
+        );
+    }
+
+
+
 });
